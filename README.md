@@ -1,4 +1,4 @@
-# •	Corona Live Android Application
+# Corona Live Android Application
 
 ## Login
 ![Login](https://user-images.githubusercontent.com/76514241/119774568-50691780-befd-11eb-8cb6-6ec02689eb77.png)
