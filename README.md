@@ -9,7 +9,7 @@
 ![image](https://user-images.githubusercontent.com/76514241/119926177-d47cd700-bfb1-11eb-92a8-2f579c0d5f39.png)
 
 ## Cases/Deaths Info. Page
-![image](https://user-images.githubusercontent.com/76514241/120017849-548e5580-c021-11eb-8017-b31c4065e6fd.png)
+![image](https://user-images.githubusercontent.com/76514241/120018165-bd75cd80-c021-11eb-8738-14470c8ab813.png)
 
 
 ## Vaccine Info. Page
