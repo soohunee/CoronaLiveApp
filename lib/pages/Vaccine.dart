@@ -23,7 +23,7 @@ class Vaccine extends StatelessWidget{
               future: futureAlbum,
               builder: (context, snapshot){
                 if(snapshot.hasData){
-                  for(int i =0;i<28;i+=4){
+                  for(int i =0;i<snapshot.data[0].vaccineT.length;i+=4){
                     Map<String, dynamic> temp = {
                       'country' : snapshot.data[0].vaccineT[i],
                       'total': snapshot.data[0].vaccineT[i+1],
@@ -34,7 +34,9 @@ class Vaccine extends StatelessWidget{
                   }
                   List<Map<String, dynamic>> scountryData = new List<Map<String, dynamic>>.from(countryData);
                   scountryData.sort((a,b) => -a['total'].compareTo(b['total']));
-
+                  for(int i = 0 ; i<scountryData.length ; i++) {
+                    if (scountryData[i]['total'] == 0) scountryData[i]['total'] = 'null';
+                  }
                   return Column(
                       children: <Widget>[
                         Container(
@@ -686,7 +688,7 @@ class Album{
           dVacc += json[i]['data'][last-1]['daily_vaccinations'];
         }
       }
-      if(tableT != 0) table.add(tableT); else table.add('null');
+      table.add(tableT);
       if(tableF != 0) table.add(tableF); else table.add('null');
       if(tableD != 0) table.add(tableD); else table.add('null');
       //print(json[i]['country']+'- ' + tfVacc.toString());

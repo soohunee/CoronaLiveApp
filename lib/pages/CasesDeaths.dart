@@ -23,7 +23,7 @@ class CasesDeaths extends StatelessWidget{
             future: futureAlbum,
             builder: (context, snapshot) {
               if(snapshot.hasData){
-                for(int i =0;i<28;i+=4){
+                for(int i =0;i<snapshot.data[0].casesT.length;i+=4){
                   Map<String, dynamic> temp = {
                     'country' : snapshot.data[0].casesT[i],
                     'totalC': snapshot.data[0].casesT[i+1],
@@ -32,6 +32,7 @@ class CasesDeaths extends StatelessWidget{
                   };
                   countryData.add(temp);
                 }
+                countryData.sort((a,b) => -a['totalC'].compareTo(b['totalC']));
                 List<Map<String, dynamic>> scountryData = new List<Map<String, dynamic>>.from(countryData);
                 scountryData.sort((a,b) => -a['totalD'].compareTo(b['totalD']));
                 for(int i = 0 ; i<scountryData.length ; i++) {
@@ -350,13 +351,13 @@ class CasesDeaths extends StatelessWidget{
                               children: [
                                 TabBar(
                                   tabs: [
-                                    Tab(child: Text('Country_name',
+                                    Tab(child: Text('Total Cases',
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.blueAccent,)),
                                     ),
-                                    Tab(child: Text('Total_vacc',
+                                    Tab(child: Text('Total Deaths',
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -384,22 +385,22 @@ class CasesDeaths extends StatelessWidget{
                                               DataColumn(label:Text(
                                                   'Country',
                                                     style: TextStyle(
-                                                      fontSize: 12,
+                                                      fontSize: 10,
                                                   )
                                                 ),
                                               ),
                                               DataColumn(label:Text('Total Cases',
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 10,
                                                   )
                                               )),
                                               DataColumn(label:Text('Daily Cases',
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 10,
                                                   ))),
                                               DataColumn(label:Text('Total Deaths',
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 10,
                                                   ))),
                                             ],
                                             rows: [
@@ -626,7 +627,7 @@ class Album{
     int recentDay = int.parse(recentSplit[2]);
 
     for(String i in countries){
-      table.add(i);
+      table.add(json[i]['location']);
       double ttc = 0;
       double tnc = 0;
       double ttd = 0;
@@ -724,7 +725,7 @@ class Album{
       }
 
       table.add(ttc.round());
-      table.add(tnc.round());
+      if(tnc != 0 ) table.add(tnc.round()); else table.add('null');
       table.add(ttd.round());
     }
 
